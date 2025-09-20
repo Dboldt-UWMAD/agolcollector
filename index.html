@@ -21,7 +21,7 @@
     <script src="https://js.arcgis.com/4.26/"></script>
 
     <script>
-      require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
+      require(["esri/config", "esri/Map", "esri/views/MapView","esri/widgets/Locate", "esri/widgets/Search"], function(esriConfig, Map, MapView, Locate, Search) {
         esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurEgdsxN_WfCGs2RqOrNfQW8VulJDY0K9jA0e0QITBUrY6ze4iDm7gGrfnir2Ri5GHwWzw-WqgzUMlQ-Q9B0fa0lpK0zbqoc2sktDyFVJfcEI6nPQn1EnBLvQZAKKvogpUvf9uM-v-c9Ov6xOB18dTpZFTVu-TYgfxLZT3XeGw3kBB2a2F7bO9FIIDUWl8F4ddrvfZVaoA5a5DNk-s3FZKxCTQU90Oj9gImN0eqJvrLprAT1_eMwue8gT";
 
         var map = new Map({
@@ -31,6 +31,33 @@
         var view = new MapView({
           container: "viewDiv",
           map: map,
+          center: [-89.4012, 43.0731], // Longitude, latitude (Madison, WI)
+          zoom: 13 // Zoom level (1-20, higher = more zoomed in)
+        });
+
+        const locateBtn = new Locate({
+          view: view
+        });
+
+        // Add the locate widget to the top left corner of the view
+        view.ui.add(locateBtn, {
+          position: "top-left"
+        });
+
+        // Create the Search widget (address bar)
+        const searchWidget = new Search({
+          view: view,
+          placeholder: "Search for an address or place",
+          includeDefaultSources: true,
+          locationEnabled: false,
+          popupEnabled: true,
+          resultGraphicEnabled: true,
+          searchAllEnabled: false
+        });
+
+        // Add the search widget to the top right corner of the view
+        view.ui.add(searchWidget, {
+          position: "top-right"
         });
       });
 
