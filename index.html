@@ -1,10 +1,48 @@
 <!DOCTYPE html>
  <html>
   <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
    <title>Data Collector for AGOL</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+   <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.26/"></script>
+
+    <script>
+      require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
+        esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurEgdsxN_WfCGs2RqOrNfQW8VulJDY0K9jA0e0QITBUrY6ze4iDm7gGrfnir2Ri5GHwWzw-WqgzUMlQ-Q9B0fa0lpK0zbqoc2sktDyFVJfcEI6nPQn1EnBLvQZAKKvogpUvf9uM-v-c9Ov6xOB18dTpZFTVu-TYgfxLZT3XeGw3kBB2a2F7bO9FIIDUWl8F4ddrvfZVaoA5a5DNk-s3FZKxCTQU90Oj9gImN0eqJvrLprAT1_eMwue8gT";
+
+        var map = new Map({
+          basemap: "satellite"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+        });
+      });
+
+
+    </script>
+
+
   </head>
   <body>
-   <!-- hello world text to check if everything worked -->
-   <h1>Hello World! I am ready to collect data.</h1>
+
+    <div id="viewDiv"></div>
+
+
   </body>
 </html>
